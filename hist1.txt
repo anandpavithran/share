@@ -1,320 +1,199 @@
-    1  ls -lrt
-    2  exit
-    3  ls -lrt
-    4  ls -lrta
-    5  exit
-    6  exit
-    7  git clone https://github.com/anandpavithran/kubernetes-demo
-    8  git clone https://github.com/anandpavithran/380-chapter-1
-    9  git clone https://github.com/anandpavithran/380-chapter-2
-   10  git clone https://github.com/anandpavithran/380-chapter-3
-   11  git clone https://github.com/anandpavithran/380-openshift-ansible
-   12  git clone https://github.com/anandpavithran/380-kubernetes-demo1
-   13  git clone https://github.com/anandpavithran/380-kubernetes-demo2
-   14  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
-   15  oc get node
-   16  kubectl get node
-   17  oc projects
-   18  oc whoami
-   19  oc whoami -t
-   20* oc log
-   21  oc whoami -t
-   22  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
-   23  oc whoami -t
-   24  vim .kube/config 
-   25  oc config get-contexts
-   26  oc config set-context jio1 --cluster=api-ocp4-example-com:6443 --namespace=openshift --user admin
-   27  oc config get-contexts
-   28  oc logout 
-   29  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
-   30  oc config use-context jio1
-   31  oc logout 
-   32  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
-   33  oc config get-contexts
-   34  vim .kube/config 
-   35  kubectl create namespace test100
-   36  oc projects
-   37  oc new-project test200
-   38  oc projects
-   39  oc project test100
-   40  oc projects
-   41  git clone https://github.com/anandpavithran/kubernetes-demo1
-   42  cd kubernetes-demo1/
-   43  ls
-   44  vim hello.yml 
-   45  #kubectl create -f hello.yml 
-   46  kubectl get all
-   47  kubectl create -f hello.yml 
-   48  kubectl get all
-   49  curl http://hello.apps.ocp4.example.com
-   50  cd
-   51  cd 380-kubernetes-demo2/
-   52  ls
-   53  tree 
-   54  vim base/hello.yml 
-   55  kubectl create namespace k8s-deploy-prod
-   56  vim base/hello.yml 
-   57  vim base/kustomization.yml 
-   58  oc project k8s-deploy-prod 
-   59  oc get all
-   60  kubectl apply -k base/
-   61  kubectl get all
-   62  curl deploying-practice.apps.ocp4.example.com
-   63  ls
-   64  tree
-   65  vim overlays/prod/kustomization.yml 
-   66  oc delete all --all
-   67  oc get all
-   68  kubectl get all
-   69  kubectl apply -k overlays/prod
-   70  oc get all
-   71  vim overlays/prod/kustomization.yml 
-   72  ls
-   73  curl deploying-practice.apps.ocp4.example.com
-   74  ls overlays-update/
-   75  vim overlays-update/prod/kustomization.yml 
-   76  kubectl apply -k overlays-update/prod
-   77  oc gt pod
-   78  oc get pod
-   79  curl deploying-practice.apps.ocp4.example.com
-   80  oc kustomize 
-   81  oc whoami --show-console
-   82  cd
-   83  oc projects
-   84  oc delete project k8s-deploy-prod
-   85  oc delete project test100
-   86  oc delete project test200
-   87  oc projects
-   88  oc delete project test100
-   89  oc delete project test200
-   90  oc projects
-   91  oc project test300
-   92  oc get all
-   93  oc import-image infosys --confirm --from quay.io/anandpavithran/infosys:1.0
-   94  oc delete is infosys
-   95  oc import-image infosys --confirm --from quay.io/anandpavithran/infosys:2.0
-   96  oc get all
-   97  oc new-app -i infosys --name test3
-   98  oc get all
-   99  oc expose svc test3
-  100  oc get route
-  101  curl http://test3-test300.apps.ocp4.example.com
-  102  oc edit deployment/test3
-  103  git clone https://github.com/anandpavithran/mytest2
-  104  cd mytest2/
-  105  vim index.html 
-  106  podman build -t quay.io/anandpavithran/infosys:2.0 --format docker --layers=false .
-  107  curl http://test3-test300.apps.ocp4.example.com
-  108  podman login quay.io
-  109  podman push quay.io/anandpavithran/infosys:2.0
-  110  curl http://test3-test300.apps.ocp4.example.com
-  111  oc get pod
-  112  oc import-image infosys
-  113  oc get pod
-  114  curl http://test3-test300.apps.ocp4.example.com
-  115  oc set triggers -h
-  116  oc new-app -i infosys --as-deployment-config --name test33
-  117  oc get all
-  118  oc edit deployment test3
-  119  cd
-  120  oc projects
-  121  oc delete project test100
-  122  oc delete project test200
-  123  oc projects
-  124  oc logout
-  125  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
-  126  oc delete all --all
-  127  oc new-app --name test3 --docker-image=quay.io/anandpavithran/infosys:1.0
-  128  oc new-app --name test3 --docker-image quay.io/anandpavithran/infosys:2.0
-  129  oc epose svc test3
-  130  oc expose svc test3
-  131  oc get route
-  132  oc get deployment
-  133  oc edit deployment test3
-  134  oc get deployment -o json
-  135  oc get deployment -o jsonpath='{.status.availableReplicas}'
-  136  oc get deployment test3 -o jsonpath='{.status.availableReplicas}'
-  137  oc get deployment -o jsonpath='{.status.aavailableReplicas}'
-  138  oc get deployment test3  -o jsonpath='{.status.aavailableReplicas}'
-  139  oc get deployment test3  -o jsonpath='{.status.availableReplicas}'
-  140  oc edit deployment test3
-  141  oc get deployment test3  -o jsonpath='{.status.conditions[*].type}'
-  142  oc edit deployment test3
-  143  oc get deployment test3  -o jsonpath='{.status.conditions[?(@.type=="Available")].status}'
-  144  oc edit deployment test3
-  145  oc edit route test3
-  146  oc get route -o jsonpath='{.items[*].spec.host}'
-  147  oc get route -o jsonpath='{.items[*].spec.host}' |tr " " "\n"
-  148  oc get route -o jsonpath='{.items[*].spec.host}' |tr "  " "\n"
-  149  oc get route -o jsonpath='{.items[*].spec.host}' |tr " " " \n"
-  150  oc get route -o jsonpath='{.items[*].spec.host}' |tr " " "\\n"
-  151  oc get pod --all-namespaces 
-  152  oc get pod --all-namespaces  -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:.spec.nodeName
-  153  oc get pod -o jsonpath='{.items[*].spec.containers[*].images}'
-  154  oc get pod
-  155  oc get pod -o jsonpath='{.items[*].spec.containers[*].image}'
-  156  oc edit pod
-  157  cd 380-chapter-2/
-  158  ls
-  159  vim myjson.jsonpath 
-  160  oc get nodes -o jsonpath-file=myjson.jsonpath 
-  161  vim myjson.jsonpath 
-  162  cd
-  163  cd kubernetes-demo
-  164  ls
-  165  cd .
-  166  cd
-  167  cd kubernetes-demo2
-  168  cd kubernetes-demo1
-  169  ls
-  170  cd ..
-  171  ls
-  172  cd 380-kubernetes-demo2/
-  173  ls
-  174  vim overlays/prod/kustomization.yml 
-  175  vim base/hello.yml 
-  176  oc new-project k8s-deploy-prod
-  177  oc get all -n k8s-deploy-prod
-  178  oc project k8s-deploy-prod
-  179  oc kustomize -k overlays/prod/
-  180  oc kustomize -f overlays/prod/
-  181* oc kustomize 
-  182  oc kustomize overlays/prod/
+    1  exit
+    2  podman diff test1
+    3  podman commit test1 ubi-customized:1.0
+    4  podman images
+    5  podman run -it --name test2 ubi-customized:1.0 bash
+    6  podman rm -a -f
+    7  podman rmi -a -f
+    8  podman images
+    9  podman ps -a
+   10  mkdir project1
+   11  cd project1/
+   12  vim Containerfile
+   13  man dockerfile
+   14  man 5 dockerfile
+   15  vim Containerfile
+   16  vim index.html
+   17  ls
+   18  vim Containerfile
+   19  podman build -t webserver:1.0 --format=docker --layers=false .
+   20  podman image
+   21  podman images
+   22  podman run -d --name test1 -p 8051:80 webserver:1.0
+   23  podman ps
+   24  hostname
+   25  podman exec -it test1 bash
+   26  podman images
+   27  podman inspect webserver:1.0 |less
+   28  cd 
+   29  mkdir project2
+   30  cd project2/
+   31  cp ../project1/Containerfile .
+   32  vim Containerfile 
+   33  podman build -t ping:1.0 --format=docker --layers=false .
+   34  podman images
+   35  podman run --name test2 ping:1.0
+   36  podman run --name test3 ping:1.0 "www.google.com"
+   37  vim Containerfile 
+   38  podman build -t ping:2.0 --format=docker --layers=false .
+   39  podman images
+   40  podman rm -a -f
+   41  podman run --name test2 ping:2.0
+   42  podman run --name test2 ping:2.0 "-c5 www.google.com"
+   43  podman run --name test3 ping:2.0 "-c5 www.google.com"
+   44  podman run --name test3 ping:2.0 "www.google.com"
+   45  podman rm -a -f
+   46  podman run --name test3 ping:2.0 "www.google.com"
+   47  sudo podman build -t ping:2.0 --format=docker --layers=false .
+   48  sudo podman images
+   49  sudo podman run --name test1 ping2.0
+   50  #sudo podman run --name test1 ping:2.0
+   51  sudo podman rm -a -f
+   52  sudo podman run --name test1 ping:2.0
+   53  sudo podman run --name test2 ping:2.0 www.google.com
+   54  vim Containerfile 
+   55  sudo podman run --name test3 ping:2.0 "-c2 www.google.com"
+   56  sudo podman rm -a -f
+   57  sudo podman run --name test3 ping:2.0 -c2 www.google.com
+   58  vim Containerfile 
+   59  cd 
+   60  cd project1
+   61  vim Containerfile 
+   62  cd
+   63  cp -rvf project1 project3
+   64  cd project3/
+   65  ls
+   66  vim Containerfile 
+   67  podman build --help
+   68  ls
+   69  vim Containerfile 
+   70  podman build -t ibm-parent:1.0 --layers=false .
+   71  podman build -t ibm-parent:1.0 --layers=false --format=docker .
+   72  podman images
+   73  cd
+   74  cp -rvf project3 project4
+   75  podman images
+   76  cd project4/
+   77  vim Containerfile 
+   78  podman build -t ibm-child:1.0 --layers=false --format=docker .
+   79  podman images
+   80  podman inspect ibm-child:1.0 | less
+   81  vim Containerfile 
+   82  podman build -t ibm-child:1.0 --layers=false --format=docker .
+   83  podman inspect ibm-child:1.0 | less
+   84  CD
+   85  cd
+   86  git clone https://github.com/anandpavithran/kubernetes-demo
+   87  ls kubernetes-demo/
+   88  lab openshift-resources start
+   89  cat /usr/local/etc/ocp4.config 
+   90  oc get nodes
+   91  oc logout
+   92  oc get nodes
+   93  cat /usr/local/etc/ocp4.config 
+   94  oc login https://api.ap46.prod.nextcle.com:6443 -u fngqoa -p ee33367c4f80470b8139
+   95  oc projects
+   96  oc project team-a
+   97  oc get all
+   98  oc projects
+   99  oc new-project team-b
+  100  oc projects
+  101  oc get all
+  102  kubectl get nodes
+  103  kubectl get namespcae
+  104  kubectl get namespace
+  105  cd kubernetes-demo/
+  106  oc project
+  107  kubectl whoami
+  108  oc project
+  109  ls
+  110  vim pod.yml 
+  111  oc get all
+  112  oc create -f pod.yml 
+  113  oc get all
+  114  oc delete pod/web
+  115  vim deployment.yml 
+  116  kubectl create -f deployment.yml 
+  117  kubectl get all
+  118  kubectl delete pod/myweb-deployment-7cb6b4cc9f-bvwcc
+  119  kubectl get all
+  120  kubectl edit depolyment/myweb-deployment
+  121  kubectl get all
+  122  kubectl edit deployment/myweb-deployment
+  123  oc get pod
+  124  oc projects
+  125  oc new-project team-c
+  126  oc get all
+  127  oc new-app --name=test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+  128  oc get all
+  129  oc get pod -o yaml
+  130  oc get pod -o yaml > a.yml
+  131  vim a.yml 
+  132  oc get pod
+  133  oc get deployment
+  134  oc get is
+  135  oc get rpelicaset
+  136  oc get replicaset
+  137  oc logs test1-5c579c9c85-rnwbx 
+  138  oc rsh test1-5c579c9c85-rnwbx 
+  139  oc get all
+  140  oc get pod -o wide
+  141  oc delete pod test1-5c579c9c85-rnwbx 
+  142  oc get pod -o wide
+  143  oc edit deployment test1
+  144  oc get pod
+  145  oc get pod -o wide
+  146  oc get svc
+  147  oc edit svc test1
+  148  curl http://172.30.4.19:8080
+  149  oc get pod
+  150  oc port-forward test1-5c579c9c85-tqbzb 8051:8080
+  151  oc login https://api.ap46.prod.nextcle.com:6443 -u ${RHT_OCP4_DEV_USER} -p ee33367c4f80470b8139
+  152  source /usr/local/etc/ocp4.config 
+  153  oc login https://api.ap46.prod.nextcle.com:6443 -u ${RHT_OCP4_DEV_USER} -p ee33367c4f80470b8139
+  154  cat /usr/local/etc/ocp4.config 
+  155  oc login https://api.ap46.prod.nextcle.com:6443 -u fngqoa -p ee33367c4f80470b8139
+  156  oc new-project test500
+  157  oc new-app --name test5 --docker-image=quay.io/anandpavithran/infosys:2.0
+  158  oc get all
+  159  oc get route
+  160  oc expose svc test5
+  161  oc get route
+  162  curl http://test5-test500.apps.ap46.prod.nextcle.com
+  163  oc edit route test5
+  164  oc get ingress
+  165  oc get pod -n openshift-ingress
+  166  oc project
+  167  oc get route
+  168  curl http://test5-test500.apps.ap46.prod.nextcle.com
+  169  dig test5-test500.apps.ap46.prod.nextcle.com
+  170  dig anand.apps.ap46.prod.nextcle.com
+  171  cd
+  172  oc projects
+  173  oc new-project test600
+  174  oc new-app --name test6 -i php:7.3 --code https://github.com/anandpavithran/phpdemo
+  175  oc get pod
+  176  oc logs -f bc/test6
+  177  oc get pod
+  178  oc get all
+  179  oc expose svc test6
+  180  oc get route
+  181  curl http://test6-test600.apps.ap46.prod.nextcle.com 
+  182  oc start-build test6
   183  oc get pod
-  184  oc create -k overlays/prod/
-  185  oc get pod
-  186  oc ge tall
-  187  oc get all
-  188  oc apply -k overlays/prod/
-  189  oc delete project k8s-deploy-prod
-  190  vim base/hello.yml 
-  191  cd
-  192  oc new-project test300
-  193  oc project test300
-  194  oc delete all a--l
-  195  oc delete all --all
-  196  oc import-image infosys --confirm --from quay.io/anandpavithran/infosys:2.0
-  197  oc new-app -i infosys --name test3
-  198  oc expose svc test3
-  199  oc rollout status
-  200  oc rollout status deployment test3
-  201  oc rollout status deployment test3 --revis
-  202  oc rollout history deployment/test3
-  203  oc rollout status deployment test3 --revision=2
-  204  oc rollout status deployment test3 --revision=3
-  205  oc  get deployment/test3  -o jsonpath='{.status.observedGeneration}'
-  206  oc apply --help
-  207  oc project k8s-deploy-prod
-  208  cd 380-kubernetes-demo2/
-  209  ls
-  210  oc apply -k overlays/prod
-  211  oc delete project k8s-deploy-prod 
-  212  oc new-project k8s-deploy-prod
-  213  oc delete project k8s-deploy-prod  --force
-  214  oc delete project test100  --force
-  215  oc delete project test200  --force
-  216  oc projects
-  217  CD
-  218  cd
-  219  ls
-  220  git clone https://github.com/anandpavithran/380-cronjob-openshift
-  221  git clone https://github.com/anandpavithran/380-api-openshift
-  222  podman images
-  223  podman rmi -a
-  224  rpm -qa podman
-  225  podman login quay.io
-  226  podman logout --all
-  227  podman login quay.io
-  228  podman pull quay.io/anandpavithran/infosys:1.0
-  229  podman images
-  230  podman rmi -a
-  231  podman images
-  232  podman pull ubi8
-  233  vim /etc/containers/registries.conf 
-  234  podman search infosys
-  235  sudo vim /etc/containers/registries.conf 
-  236  podman search infosys
-  237  podman rmi -a
-  238  podman run -d --name test1 quay.io/anandpavithran/infosys:1.0
-  239  podman ps
-  240  podman exec -it test1 bash
-  241  env | grep APPLE
-  242  podman exec -it test1 bash
-  243  podman ps
-  244  podman stop test1
-  245  podman ps
-  246  podman ps -a
-  247  podman run -it --name test1 ubi8 bash
-  248  podman ps -a
-  249  podman run -it --name test2 ubi8 bash
-  250  podman start test2
-  251  podman ps -a
-  252  podman start test1
-  253  podman ps -a
-  254  podman exec -it test1 bash
-  255  podman exec -it test1 ls
-  256  podman stop test1
-  257  podman ps -a
-  258  podman rm test1
-  259  podman ps -a
-  260  podman run -d --name test1 -p 8031:8080 quay.io/anandpavithran/infosys:1.0
-  261  podman ps -a
-  262  hostname
-  263  curl http://workstation.lab.example.com:8031
-  264  podman ps
-  265  curl http://workstation.lab.example.com:8031
-  266  podman exec -it test1 bash
-  267  curl http://workstation.lab.example.com:8031
-  268  podman rm test1 -f
-  269  podman ps -a
-  270  podman rm test1 -f
-  271  podman ps -a
-  272  mkdir share
-  273  ls -l
-  274  podman run -d --name test1 -v /home/student/share:/var/www/html -p 8031:8080 quay.io/anandpavithran/infosys:1.0
-  275  podman ps
-  276  cd share/
-  277  vim index.html
-  278  rm index.html 
-  279  cd
-  280  ls -Zd /home/student/share/
-  281  chcon -t container_file_t /home/student/share
-  282  ls -Zd /home/student/share/
-  283  echo HELLOWORLD > /home/student/share/index.html
-  284  curl http://workstation.lab.example.com:8031
-  285  podman exec -it test1 bash
-  286  podman rm test1 -f
-  287  ls /home/student/share/
-  288  podman run -d --name test1 -v /home/student/share:/var/www/html -p 8031:8080 quay.io/anandpavithran/infosys:1.0
-  289  curl http://workstation.lab.example.com:8031
-  290  podman images
-  291  #podman rmi -a 
-  292  podman ps -a
-  293  #podman rm -a -f
-  294  podman images
-  295  podman exec -it test2 bash
-  296  podman ps -a
-  297  podman commit test2 jio1-tools:1.0
-  298  podman images
-  299  podman  run -it --name test3 jio-tools:1.0 bash
-  300  podman images
-  301  podman  run -it --name test3 jio1-tools:1.0 bash
-  302  podman images
-  303  podman save -o jio1-tools.tar localhost/jio-tools:1.0
-  304  podman save -o jio1-tools.tar localhost/jio1-tools:1.0
-  305  ls
-  306  podman save -o infosys.tar quay.io/anandpavithran/infosys:1.0
-  307  ls
-  308  podman rm -a -f
-  309  podman rmi -a -f
-  310  podman images
-  311  podman ps -a
-  312  podman images
-  313  podman ps -a
-  314  podman load -i infosys.tar
-  315  podman images
-  316  podman load -i jio1-tools.tar
-  317  podman images
-  318  history 
-  319  ls
-  320  history > hist1.txt
+  184  curl http://test6-test600.apps.ap46.prod.nextcle.com 
+  185  oc get all
+  186  #oc new-app --name test6 -i php:7.3 --code https://github.com/anandpavithran/phpdemo
+  187  #oc new-app  https://github.com/anandpavithran/phpdemo
+  188  oc get is
+  189  oc get is -n openshift
+  190  oc get is -n openshift -o name
+  191  oc get is -n openshift | grep php
+  192  oc edit is php -n openshift 
+  193  git clone https://github.com/anandpavithran/share
+  194  rm -rvf share
+  195  git clone https://github.com/anandpavithran/share
+  196  cd share/
+  197  ls
+  198  rm -rvf *
+  199  history > hist1.txt
