@@ -1,0 +1,4 @@
+  oc new-project share100-yourname
+  podman login  default-route-openshift-image-registry.apps.ap46.prod.nextcle.com -u $(oc whoami) -p $(oc whoami -t)
+  skopeo copy docker://quay.io/yourrep/ubi-sleep:1.0 docker://default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/share100-yourname/ubi-sleep:1.0
+  152  oc new-app --name sleep default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/share100-anil-rao/ubi-sleep:1.0
