@@ -1,0 +1,186 @@
+    1  exit
+    2  lab-configure 
+    3  cat /usr/local/etc/ocp4.config 
+    4  oc login https://api.ap46.prod.nextcle.com:6443/ -u cmujvt -p c13a1d2044914900aeab
+    5  ls
+    6  oc projects
+    7  oc new-project test100
+    8  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+    9  oc get pod
+   10  oc expose svc test1
+   11  oc get route
+   12  curl http://test1-test100.apps.ap46.prod.nextcle.com
+   13  oc get secret
+   14  oc get cm
+   15  oc create secret generic --from-literal=USERNAME=oracle1 --from-literal=PASS=test123
+   16  oc create secret generic ibm-secret1 --from-literal=USERNAME=oracle1 --from-literal=PASS=test123
+   17  oc get secret
+   18  vim a.txt
+   19  oc create secret generic --from-file=/home/student/a.txt 
+   20  oc create secret generic ibm2-secret --from-file=/home/student/a.txt 
+   21  oc get secret
+   22  oc describe secret ibm-secret1
+   23  oc edit secret ibm-secret1 
+   24  echo dGVzdDEyMw== | base64 -d
+   25  oc get cm
+   26  oc create cm ibm1-configmap --from-literal=LISTEN=8080 --from-literal=IPADDR=192.168.0.100
+   27  vim index.html
+   28  oc create cm ibm2-configmap --from-file=/home/student/index.html 
+   29  oc get cm
+   30  oc describe cm ibm1-configmap 
+   31  oc describe cm ibm2-configmap 
+   32  oc new-project test200
+   33  oc get cm
+   34  oc get secret
+   35  oc project test100
+   36  oc get secret
+   37  oc get svc
+   38  oc get pod
+   39  oc get secret
+   40  oc set env deployment/test1 --from secret/ibm-secret1
+   41  oc get pod
+   42  oc rsh test1-6f54d85bf8-nzslb 
+   43  oc set volume deployment/test1 --add -t secret -m /ISRO --name myvol1 --secret-name ibm2-secret
+   44  oc get pod
+   45  oc rsh test1-746d7fcfc5-g7cfp 
+   46  oc get pod
+   47  oc ge tcm
+   48  oc get cm
+   49  oc set env deployment/test1 --from configmap/ibm1-configmap
+   50  oc get pod
+   51  oc rsh test1-7ddc666d95-lh49p 
+   52  curl http://test1-test100.apps.ap46.prod.nextcle.com
+   53  oc set volume deployment/test1 --add -t configmap -m /var/www/html --name myvol2 --configmap-name ibm2-configmap
+   54  oc get pod
+   55  curl http://test1-test100.apps.ap46.prod.nextcle.com
+   56  oc rsh test1-747577586d-tdr7f 
+   57  oc edit deployment test1 
+   58  curl http://test1-test100.apps.ap46.prod.nextcle.com
+   59  oc edit cm ibm2-configmap 
+   60  oc get pod
+   61  curl http://test1-test100.apps.ap46.prod.nextcle.com
+   62  oc get pod
+   63  curl http://test1-test100.apps.ap46.prod.nextcle.com
+   64  oc get pod
+   65  oc exec -it test1-747577586d-tdr7f bash
+   66  oc rsh test1-747577586d-tdr7f 
+   67  env | grep XDG
+   68  ls /run/user/1000/
+   69* podman login quay.io
+   70  ls /run/user/1000/
+   71  sudo podman login quay.io
+   72  sudo podman logout --all
+   73  sudo podman login quay.io
+   74  ls /run/user/1000/
+   75   podman login quay.io
+   76  ls /run/user/1000/
+   77  cat /run/user/1000/containers/auth.json 
+   78  podman search infosys
+   79  cat /run/user/1000/containers/auth.json 
+   80  man podman
+   81  cat /run/user/1000/containers/auth.json 
+   82  podman logout --all
+   83  cat /run/user/1000/containers/auth.json 
+   84  grep XDG
+   85  env | gre XDG
+   86  env | grep XDG
+   87  id
+   88  cat /run/user/1000/containers/auth.json 
+   89  podman login quay.io
+   90  cat /run/user/1000/containers/auth.json 
+   91  ls
+   92  git clone https://github.com/anandpavithran/mytest2
+   93  cd mytest2/
+   94  vim index.html 
+   95  podman build -t quay.io/anandpavithran/ibm:1.0 --format=docker --layers=false .
+   96  podman images
+   97  podmaan push quay.io/anandpavithran/ibm:1.0
+   98  podman push quay.io/anandpavithran/ibm:1.0
+   99  cd
+  100  podman logout --all
+  101  podman pull quay.io/anandpavithran/ibm:1.0
+  102  podman login quay.io
+  103  cat /run/user/1000/containers/auth.json 
+  104  podman pull quay.io/anandpavithran/ibm:1.0
+  105  podman rmi -a -f
+  106  podman logout --all
+  107  skopeo inspect docker://quay.io/anandpavithran/ibm:1.0
+  108  cat /run/user/1000/containers/auth.json 
+  109  podman login quay.io
+  110  cat /run/user/1000/containers/auth.json 
+  111  skopeo inspect docker://quay.io/anandpavithran/ibm:1.0
+  112  cat /run/user/1000/containers/auth.json 
+  113  podman login docker.io
+  114  cat /run/user/1000/containers/auth.json 
+  115  skopeo copy docker://quay.io/anandpavithran/ibm:1.0 docker://docker.io/anandpavithran81/ibm:1.0
+  116  skopeo delete docker://quay.io/anandpavithran/ibm:1.0
+  117  skopeo copy docker://docker.io/anandpavithran81/ibm:1.0 docker://quay.io/anandpavithran/ibm:1.0
+  118  oc projects
+  119  oc project test200
+  120  oc new-app --name test2 --docker-image=quay.io/anandpavithran/ibm:1.0
+  121  cat /run/user/1000/containers/auth.json 
+  122  oc create secret generic quayio --from-file .dockerconfigjson=/run/user/1000/containers/auth.json  --type kubernetes.io/dockerconfigjson
+  123  oc get sa
+  124  oc secrets link default quayio --for pull
+  125  oc new-app --name test2 --docker-image=quay.io/anandpavithran/ibm:1.0
+  126  oc  get pod
+  127  oc get pod -n openshift-image-registry
+  128  oc get route
+  129  oc get route -n openshift-image-registry
+  130  #podman login default-route-openshift-image-registry.apps.ap46.prod.nextcle.com -u de
+  131  oc whoami
+  132  oc whoami -t
+  133  podman login default-route-openshift-image-registry.apps.ap46.prod.nextcle.com -u $(oc whoami) -p $(oc whoami -t)
+  134  cat /run/user/1000/containers/auth.json 
+  135  oc new-project share100
+  136  #skopeo copy docker://docker.io/anandpavithran/ibm:1.0 docker://default-route-openshift-image-registry.apps.ap46.prod.nextcle.com
+  137  oc get is -n test100
+  138  skopeo copy docker://docker.io/anandpavithran/ibm:1.0 docker://default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/share100/ibm:1.0
+  139  skopeo copy docker://quay.io/anandpavithran/ibm:1.0 docker://default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/share100/ibm:1.0
+  140  oc project
+  141  oc get is
+  142  oc get is -n openshift -o name
+  143  oc projects
+  144  oc project test200
+  145  oc delete all --all
+  146  oc new-app --name test2 --docker-image=default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/share100/ibm:1.0
+  147  oc get is -n share100
+  148  oc new-app --name test2 --docker-image=default-route-openshift-image-registry.apps.ap46.prod.nextcle.com/share100/ibm:1.0
+  149  oc  new-app --name test2 -i share100/ibm:1.0
+  150  oc get pod
+  151  oc get is -n share100
+  152  oc delete all --all
+  153  oc  new-app --name test2 -i share100/ibm
+  154  oc projects
+  155  oc new-project test500
+  156  oc get is
+  157  oc get all
+  158  oc import-image infosys --confirm --from quay.io/anandpavithran/infosys:2.0 --scheduled 
+  159  oc get is
+  160  oc get   all
+  161  oc new-app --name test5 -i infosys
+  162  oc get pod
+  163  oc expose svc test5
+  164  oc     get route
+  165  curl http://test5-test500.apps.ap46.prod.nextcle.com 
+  166  cd mytest2/
+  167  vim index.html 
+  168  podman build -t quay.io/anandpavithran/infosys:2.0 --format=docker --layers=false .
+  169  curl http://test5-test500.apps.ap46.prod.nextcle.com 
+  170  oc    get pod
+  171  podman push quay.io/anandpavithran/infosys:2.0
+  172  oc    get pod
+  173  curl http://test5-test500.apps.ap46.prod.nextcle.com 
+  174  oc import-image infosys
+  175  oc get pod
+  176  curl http://test5-test500.apps.ap46.prod.nextcle.com 
+  177  oc new-project test600
+  178  oc new-app --name test6 -i test500/infosys
+  179  oc get pod
+  180  oc delete all --all
+  181  oc get is -n share100
+  182  oc get route -n openshift-image-registry
+  183  oc get pod -n openshift-image-registry
+  184  cd
+  185  git clone https://github.com/anandpavithran/share
+  186  history > share/march-14-2022.txt
