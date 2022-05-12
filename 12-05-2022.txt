@@ -1,0 +1,715 @@
+    1  cat ../token 
+    2  cd
+    3  podman ps
+    4  podman ps -a
+    5  podman ps
+    6  podman exec -it test2 bash
+    7  podman exec -it test2 ls
+    8  podman exec -it test2 date
+    9  podman exec -it test2 cal
+   10  podman exec -it test2 ifconfig
+   11  podman ps -a
+   12  podman registry.redhat.io
+   13  podman login registry.redhat.io
+   14  podman ps -a
+   15  podman stop test2
+   16  podman ps -a
+   17  podman rm test2
+   18  podman ps -a
+   19  podman kill test1
+   20  podman ps -a
+   21  man signal
+   22  man 7 signal
+   23  podman rm -a -f
+   24  podman run -it --name test1 ubi8 bash
+   25  podman ps
+   26  podman ps -a
+   27  podman start test1
+   28  podman exec -it test1 bash
+   29  podman rm test1 -f
+   30  podman ps -a
+   31  podman rm -a -f
+   32  mkdir share
+   33  podman run -d --name test1 -p 8051:8080 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+   34  podman ps
+   35  podman exec -it test1 bash
+   36  podman unshare chown -R 1001:0 /home/student/share
+   37  podman exec -it test1 bash
+   38  ls -Zd /home/student/share/
+   39  sudo semanage fcontext -a -t container_file_t '/home/student/share(/.*)?'
+   40  ls -Zd /home/student/share/
+   41  sudo restorecon -RvF /home/student/share
+   42  ls -Zd /home/student/share/
+   43  podman exec -it test1 bash
+   44  cat /home/student/share/index.html 
+   45  sudo echo "ERRICSSON UPDATED" >> /home/student/share/index.html 
+   46  sudo -i
+   47  podman ps
+   48  podman rm test1
+   49  podman rm test1 -f
+   50  podman ps
+   51  podman ps -a
+   52  podman run -d --name test1 -p 8051:8080 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+   53  history 
+   54  podman ps -a
+   55  podman inspect test1 | grep IPA
+   56  podman run -d --name test1 -p 8051:8080 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+   57  curl http://localhost:8051
+   58  sudo podman ps
+   59  sudo podman images
+   60  sudo podman run -d --name test1 -p 8051:8080 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+   61  sudo podman rm test1
+   62  sudo podman run -d --name test1  -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+   63  sudo podman inspect test1 | grep ipa
+   64  sudo podman inspect test1 | grep IPA
+   65  curl http://10.88.0.3:8080
+   66  vim /etc/containers/registries.conf 
+   67  sudo vim /etc/containers/registries.conf 
+   68  podman search infosys
+   69  podman pull quay.io/anandpavithran/ibm:1.0
+   70  podman login quay.io
+   71  podman pull quay.io/anandpavithran/ibm:1.0
+   72  curl -Ls https://quay.io/v2/anandpavithran/infosys/tags/list
+   73  podman images
+   74  podman info
+   75  cd /home/student/.local/share/containers/storage
+   76  ls
+   77  cd overlay-images/
+   78  ls
+   79  podman images
+   80  cd
+   81  podman images
+   82  ls
+   83  podman save -o infosys.tar quay.io/anandpavithran/infosys:2.0
+   84  ls
+   85  podman rm -a -f
+   86  podman rmi -a -f
+   87  podman images
+   88  ls
+   89  podman load -i /path/infosys.tar
+   90  podman images
+   91  podman rmi -a
+   92  podman ps -a
+   93  podman images
+   94  podman run -it --name test1 ubi8 bash
+   95  gedit token
+   96  cat token 
+   97  git config --global credential.helper cache
+   98  lab-configure 
+   99  LS
+  100  ls
+  101  git clone https://github.com/anandpavithran/DO180-apps
+  102  ls
+  103  cd DO180-apps/
+  104  git status
+  105  touch a
+  106  git status
+  107  vim a
+  108  git add .
+  109  git commit . -m "0905202022-anand"
+  110  git push --all
+  111  cd
+  112  vim a.txt
+  113  rpm -qa podman
+  114  podman images
+  115  podman pull infosys:2.0
+  116  vim /etc/containers/registries.conf 
+  117  podman pull quay.io/anandpavithran/infosys:2.0
+  118  podman images
+  119  podman pull ubi8
+  120  podman images
+  121  podman rmi -a -f
+  122  podman images
+  123  podman run -it --name test1 registry.access.redhat.com/ubi8 bash
+  124  podman ps -a
+  125  podman start test1
+  126  podman ps 
+  127  podman run -it --name test2 registry.access.redhat.com/ubi8 bash
+  128  podman ps -a
+  129  podman start test2
+  130  podman ps -a
+  131  podman run -it --name test3 -e MYSQL_USER=anand -e MYSQL_PASS=12345 registry.access.redhat.com/ubi8 bash
+  132  podman images
+  133  podman ps -a
+  134  podman run -d -p 8051:8080 --name test4 quay.io/anandpavithran/infosys:2.0
+  135  podman ps
+  136  podman stop test4
+  137  history 
+  138  podman diff test1
+  139  podman images
+  140  podman commit test1 ping:1.0
+  141  podman images
+  142  podman tag ping:1.0 quay.io/anandpavithran/ping:1.0
+  143  podman images
+  144  podman push quay.io/anandpavithran/ping:1.0
+  145  yum whatprovides ping
+  146  suod podman ps
+  147  sudo  podman ps
+  148  sudo podman rm -a -f
+  149  sudo podman rmi -a -f
+  150  podman ps -a
+  151  podman rm -a -f
+  152  podman rmi -a -f
+  153  mkdir project1
+  154  cd project1/
+  155  vim Containerfile
+  156  ls
+  157  vim a.txt
+  158  vim Containerfile
+  159  ls
+  160  podman images
+  161  podman ps -a
+  162  podman build -t myping:1.0 --layers=false --format=docker .
+  163  podman images
+  164  vim Containerfile 
+  165  podman info myping:1.0
+  166  podman inspect myping:1.0
+  167  podman images
+  168  podman run -it --name test1 myping:1.0 bash
+  169  cd
+  170  cp -rvf project1/ project2/
+  171  cd project2/
+  172  rm a.txt 
+  173  ls
+  174  vim Containerfile 
+  175  podman build -t myping:1.1 --layers=false --format=docker .
+  176  podman images
+  177  podman run --name test2 myping:1.1 
+  178  podman run --name test2 myping:1.1 www.google.com
+  179  podman run --name test3 myping:1.1 www.google.com
+  180  podman run --name test3 myping:1.1 ls
+  181  podman run --name test4 myping:1.1 ls
+  182  podman run --name test5 myping:1.1 bash
+  183  podman rm -a -f
+  184  cd
+  185  cp -rvf project2 project3
+  186  cd project3/
+  187  vim Containerfile 
+  188  podman build -t myping:1.2 --layers=false --format=docker .
+  189  vim Containerfile 
+  190  podman build -t myping:1.2 --layers=false --format=docker .
+  191  podman images
+  192  podman run --name test2 myping:1.2
+  193  podman run --name test2 myping:1.2 www.google.com
+  194  podman run --name test3 myping:1.2 www.google.com
+  195  sudo podman build -t myping:1.2 --layers=false --format=docker .
+  196  sudo podman run --name test3 myping:1.2 www.google.com
+  197  vim Containerfile 
+  198  cd
+  199  cp -rvf project3 project4
+  200  cd project4
+  201  vim Containerfile 
+  202  CD
+  203  cd
+  204  cat /usr/local/etc/ocp4.config 
+  205  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  206  oc new-project floor-1
+  207  oc new-project floor-2
+  208  oc new-project floor-3
+  209  oc new-project floor-4
+  210  oc projects
+  211  oc whoami --show-console
+  212  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  213  oc projects
+  214  oc project
+  215  oc get all
+  216  oc get all -n floor-5
+  217  oc projects
+  218  oc project floor-5
+  219  oc projects
+  220  oc get all
+  221  oc delete all --all
+  222  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  223  oc projects
+  224  oc new-project floor-6
+  225  oc whoami
+  226  oc project
+  227  oc new-app --name test6 --docker-image=quay.io/anandpavithran/infosys:2.0
+  228  oc get all
+  229  oc get pod
+  230  oc get pod -o wide
+  231  oc delete pod test6-78f74d9d57-9drmf 
+  232  oc get pod -o wide
+  233  oc get deployment
+  234  oc edit deployment test6
+  235  oc ge tpod
+  236  oc get pod
+  237  oc get pod -o wide
+  238  oc delete pod test6-78f74d9d57-rlbx2 
+  239  oc get pod -o wide
+  240  oc scale --replicas=1 deployment/test6
+  241  oc get pod -o wide
+  242  oc delete all --all
+  243  oc get all
+  244  oc new-app --name test6 --docker-image=quay.io/anandpavithran/infosys:2.0 -o yaml > myapp.yaml
+  245  oc get all
+  246  vim myapp.yaml 
+  247  oc create -f myapp.yaml 
+  248  oc get all
+  249  oc get pod
+  250  oc describe pod test6-78f74d9d57-b92gb 
+  251  oc get svc
+  252  oc describe svc test6
+  253  oc get deployment
+  254  oc describe  deployment test6
+  255  oc get pod
+  256  oc exec -it test6-78f74d9d57-b92gb bash
+  257  oc rsh test6-78f74d9d57-b92gb 
+  258  #PERSISTENTVOLUME,PERSISTENTVOLUMECLAIM
+  259  oc get all
+  260  oc get pod -o wide
+  261  PRIVATE
+  262  curl http://10.9.0.90:8080
+  263  OC GET SVC
+  264  oc get svc
+  265  curl http://172.30.87.230:8080
+  266  oc get route
+  267  oc expose svc test6
+  268  oc get route
+  269  curl http://test6-floor-6.apps.ocp4.example.com
+  270  oc get pod -o wide
+  271  oc get svc
+  272  oc  get route
+  273  oc edit route test6
+  274  oc edit svc test6
+  275  oc edit deployment test6
+  276  oc delete route test6
+  277  oc get route
+  278  oc expose svc test6
+  279  oc get route
+  280  dig *.apps.ocp4.example.com
+  281  dig anand.apps.ocp4.example.com
+  282  dig ericsson.apps.ocp4.example.com
+  283  oc get is -n openshift
+  284  oc get is -n openshift -o names
+  285  oc get is -n openshift -o name
+  286  oc edit is php -n openshift
+  287  oc projects
+  288  oc project floor-1
+  289  oc get all
+  290  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+  291  oc get pod
+  292  oc project floor-2 
+  293  oc get all
+  294  oc get pod
+  295  oc new-app --name test2 https://github.com/anandpavithran/phpdemo
+  296  oc get pod
+  297  oc logs -f bc/test2
+  298  oc get pod
+  299  oc projects
+  300  oc delete project floor-1
+  301  oc delete project floor-2
+  302  oc delete project floor-3
+  303  oc delete project floor-4
+  304  oc delete project floor-5
+  305  oc delete project floor-6
+  306  oc new-project floor-1
+  307  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+  308  oc get pod
+  309  oc rsh test1-5d54d66797-p2mvj 
+  310  oc new-app --name test2 --docker-image=quay.io/anandpavithran/infosys:2.0
+  311  oc get pod
+  312  oc rsh test2-5857b8867c-82gtl 
+  313  oc rsh test1-5d54d66797-p2mvj 
+  314  oc get pod
+  315  oc delete pod test1
+  316  oc delete pod test1-5d54d66797-p2mvj 
+  317  oc rsh test1-5d54d66797-4hq72 
+  318  lab auth-provider start 
+  319  exit
+  320  cat /usr/local/etc/ocp4.config 
+  321  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  322  oc login https://api.ocp4.example.com:6443 -u kubeadmin -p waoWn-5S9VM-6cSsy-kMAyk
+  323  oc projects
+  324  oc get pod -n openshift-authentication
+  325  ssh utility
+  326  ssh root@utility
+  327  cd auth/
+  328  ls
+  329  vi kubeconfig
+  330  cd
+  331  oc get node
+  332  oc logout
+  333  oc get node
+  334  oc get node --kubeconfig=auth/kubeconfig
+  335  oc get pod -n openshift-authentication  --kubeconfig=auth/kubeconfig
+  336  oc get pod -n openshift-authentication 
+  337  export KUBECONFIG=/home/student/auth/kubeconfig
+  338  oc get pod -n openshift-authentication 
+  339  unset KUBECONFIG
+  340  oc get pod -n openshift-authentication 
+  341  oc login https://api.ocp4.example.com:6443 -u kubeadmin -p waoWn-5S9VM-6cSsy-kMAyk
+  342  oc get co
+  343  mkdir ericsson1
+  344  cd ericsson1/
+  345  htpasswd -b -c -B /home/student/ericsson1/htpasswd admin redhat
+  346  ls
+  347  cat htpasswd 
+  348  htpasswd -b  /home/student/ericsson1/htpasswd developer developer
+  349  cat htpasswd 
+  350  oc get secret -n openshift-config
+  351  oc create secret generic localusers --from-file htpasswd=/home/student/ericsson1/htpasswd -n openshift-config
+  352  oc get secret -n openshift-config
+  353  oc get pod -n openshift-authentication
+  354  oc get oauth
+  355  oc get oauth cluster -o yaml > oauth.yaml
+  356  ls
+  357  vim oauth.yaml 
+  358  oc replace -f oauth.yaml 
+  359  oc get pod -n openshift-authentication
+  360  oc get pod -n openshift-authentication -w
+  361  oc get pod -n openshift-authentication
+  362  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  363  oc login https://api.ocp4.example.com:6443 -u kubeadmin -p waoWn-5S9VM-6cSsy-kMAyk
+  364  oc adm policy add-cluster-role-to-user cluster-admin  admin
+  365  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  366  oc login https://api.ocp4.example.com:6443 -u devloper -p developer
+  367  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  368  oc delete project floor-1
+  369  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  370  cd
+  371  mkdir nokia
+  372  cd nokia/
+  373  oc extract secret/localusers -n openshift-config --to --confirm
+  374  oc extract secret/localusers -n openshift-config --to . --confirm
+  375  ls
+  376  cat htpasswd 
+  377  htpasswd -b  /home/student/ericsson1/htpasswd manager redhat
+  378  htpasswd -b  /home/student/nokia/htpasswd manager redhat
+  379  htpasswd -b  /home/student/nokia/htpasswd boss redhat
+  380  cat htpasswd 
+  381  oc set data secret/localusers --from-file=/home/student/nokia/htpasswd -n openshift-config
+  382  oc get pod -n openshift-authentication
+  383  cd
+  384  oc whoami
+  385  oc login -u developer -p developer
+  386  oc new-project floor-1
+  387  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+  388  oc get pod
+  389  oc expose svc test1
+  390  oc get pod
+  391  oc scale --replicas=2 deployment/test1
+  392  oc get pod
+  393  oc get route
+  394  curl http://test1-floor-1.apps.ocp4.example.com
+  395  oc get pod
+  396  oc rsh test1-5d54d66797-6h25r 
+  397  curl http://test1-floor-1.apps.ocp4.example.com
+  398  oc delete pod test1-5d54d66797-6h25r 
+  399  oc get pod
+  400  oc rsh test1-5d54d66797-m75nr 
+  401  oc get pod
+  402  oc whoami
+  403  oc get pvc
+  404  oc get pv
+  405  oc get sc
+  406  oc login -u admin -p admin
+  407  oc login -u admin -p redhat
+  408  oc get pvc
+  409  oc get pv
+  410  oc login -u developer -p developer
+  411  oc get pvc
+  412  oc get pv
+  413  oc get sc
+  414  oc set volumes deployment/test1 --add --name ericsson1 --type pvc --claim-class nfs-storage --claim-mode rwo --claim-size 2Gi -m /var/www/html --calim-name ericsson-pvc
+  415  oc set volumes deployment/test1 --add --name ericsson1 --type pvc --claim-class nfs-storage --claim-mode rwo --claim-size 2Gi -m /var/www/html --claim-name ericsson-pvc
+  416  oc get pod
+  417  oc get pvc
+  418  oc get pod
+  419  oc login -u admin -p redhat
+  420  oc get pv
+  421  oc login -u developer -p developer
+  422  oc get pod
+  423  oc rsh test1-5b98b76754-7zxv4 
+  424  curl http://test1-floor-1.apps.ocp4.example.com
+  425  oc rsh test1-5b98b76754-wkkmk
+  426  ssh root@utility
+  427  oc get pvc
+  428  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  429  oc get clusterrole
+  430  oc describe clusterrole cluster-admin
+  431  oc describe clusterrole self-provisioner
+  432  oc get clusterrolebinding
+  433  oc get clusterrolebinding -o wide | grep -E 'NAME|self-provisioners'
+  434  oc login https://api.ocp4.example.com:6443 -u developer -p eveloper
+  435  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  436  oc new-project floor-2
+  437  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  438  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+  439  oc get clusterrolebinding -o wide | grep -E 'NAME|self-provisioners'
+  440  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  441  oc new-project floor-3
+  442  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  443  oc delete project floor-3
+  444  oc delete project floor-2
+  445  oc new-project floor-5
+  446  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  447  oc project fllor-5
+  448  oc project floor-5
+  449  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  450  oc project floor-5
+  451  oc policy add-role-to-user admin developer
+  452  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  453  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+  454  oc get user
+  455  oc get group
+  456  oc get sa
+  457  oc create sa anand
+  458  oc get sa
+  459  EXIT
+  460  exit
+  461  history 11-05-2022-2.txt
+  462  history > 11-05-2022-2.txt
+  463  mv 11-05-2022* share/
+  464  ls
+  465  cd share/
+  466  ls
+  467  git add .
+  468  git commit -m test
+  469  git push --all
+  470  oc whoami
+  471  oc delete project floor-1
+  472  oc delete project floor-5
+  473  oc login -u admin -p redhat
+  474  oc whoami -t
+  475  oc whoami 
+  476  oc get node
+  477  oc adm top nodes
+  478  oc describe node master01
+  479  oc get clusterversion
+  480  oc describe clusterversion
+  481  oc describe clusterversion |less
+  482  oc adm upgrade 
+  483  oc get co
+  484  oc adm node-logs master01
+  485  oc adm node-logs -u kubelet master01
+  486  oc adm node-logs -u crio master01
+  487  oc get node
+  488  oc debug node/master01
+  489  oc get node
+  490  oc get node -o wide
+  491  oc new-project floor-1
+  492  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:no
+  493  oc get pod
+  494  oc get pod -w
+  495  oc status
+  496  oc status --suggest
+  497  oc get pod
+  498  oc logs test1-79d9df9b65-92mwr 
+  499  oc debug deployment/test1  --as-root
+  500  oc logs test1-79d9df9b65-92mwr 
+  501  oc get pod
+  502  oc get pod --loglevel 6
+  503  oc get pod --loglevel 7
+  504  oc get pod --loglevel 8
+  505  oc get pod --loglevel 10
+  506  git clone https://github.com/anandpavithran/share
+  507  rm -rvf share/
+  508  git clone https://github.com/anandpavithran/share
+  509  history > 11-05-2022.txt
+  510  cat token 
+  511  oc whoami
+  512  oc new-project floor-1
+  513  oc new-project floor-2
+  514  oc new-app --name test2 --docker-image=quay.io/anandpavithran/infosys:2.0
+  515  oc expose svc test2
+  516  oc get route
+  517  curl http://test2-floor-2.apps.ocp4.example.com
+  518  oc project
+  519  oc get secret
+  520  oc create secret generic ericsson-secret1 --from-literal=USERNAME=anand --from-literal=PASS=redhat
+  521  oc get secret
+  522  oc describe secrets ericsson-secret1 
+  523  vim cred.txt
+  524  oc create secret generic ericsson-secret1 --from-file=/home/student/cred.txt 
+  525  oc create secret generic ericsson-secret2 --from-file=/home/student/cred.txt 
+  526  oc get secret
+  527  oc describe secrets ericsson-secret2
+  528  oc create configmap ericsson-configmap1 --from-literal=MYSQL_IP=192.168.0.1 --from-literal=MYSQL_PORT=3306
+  529  OC GE TCM
+  530  oc describe cm ericsson-configmap1 
+  531  vim index.html
+  532  oc create configmap ericsson-configmap2 --from-file=/home/student/index.html 
+  533  oc describe cm ericsson-configmap2
+  534  curl http://test2-floor-2.apps.ocp4.example.com
+  535  oc get pod
+  536  oc set env deployment/test2 --from secret/ericsson-secret1
+  537  oc get pod
+  538  oc rsh test2-58bd4b77dd-bgxcv 
+  539  oc set volume deployment/test2 --add -t secret -m /chennai --name myvol --secret-name ericsson-secret2
+  540  oc get pod
+  541  oc rsh test2-68bf6f67b6-zmjv4 
+  542  curl http://test2-floor-2.apps.ocp4.example.com
+  543  oc set volume deployment/test2 --add -t configmap -m /var/www/html --name myvol2 --configmap-name ericsson-configmap2
+  544  oc get pod
+  545  curl http://test2-floor-2.apps.ocp4.example.com
+  546  oc edit cm ericsson-configmap2
+  547  curl http://test2-floor-2.apps.ocp4.example.com
+  548  oc get pod
+  549  curl http://test2-floor-2.apps.ocp4.example.com
+  550  oc get pod
+  551  oc whoami
+  552  oc projects
+  553  oc delete project floor-1
+  554  oc delete project floor-2
+  555  oc new-project floor-1
+  556  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:no
+  557  oc get pod -w
+  558  oc logs test1-79d9df9b65-t8996 
+  559  oc status
+  560  oc status --suggest
+  561  oc get pod
+  562  oc describe pod test1-79d9df9b65-t8996 | grep scc
+  563  oc get scc
+  564  oc get sa
+  565  oc describe pod test1-79d9df9b65-t8996 | grep scc
+  566   oc adm policy add-scc-to-user anyuid -n floor-1 -z default
+  567  oc get pod
+  568  oc delete pod test1-79d9df9b65-t8996 
+  569  oc get pod
+  570  oc rsh test1-79d9df9b65-mt5gp 
+  571   oc adm policy remove-scc-from-user anyuid -n floor-1 -z default
+  572  oc delete pod test1-79d9df9b65-mt5gp 
+  573  oc get pod
+  574  oc delete all --all
+  575  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+  576  oc get pod
+  577  oc rsh test1-5d54d66797-8bjcm 
+  578  oc describe pod test1-5d54d66797-8bjcm | grep scc
+  579  oc get sa
+  580  oc create sa ericsson
+  581   oc adm policy add-scc-to-user restricted -n floor-1 -z ericsson
+  582  oc set serviceaccount deployment/test1 ericsson
+  583  oc get pod
+  584  oc project
+  585  oc get pod
+  586  oc get pod -o wide
+  587   oc get svc
+  588  oc project
+  589  oc get pod
+  590  oc getsvc
+  591  oc ge tsvc
+  592  oc get pod
+  593  oc ge tsvc
+  594  oc get pod
+  595  oc get svc
+  596  oc get route
+  597  oc expose svc tes1
+  598  oc expose svc test1 
+  599  oc get route
+  600  curl http://test1-floor-1.apps.ocp4.example.com
+  601  oc get pod -n openshift-ingress
+  602  oc get pod -n openshift-ingress -o wide
+  603  oc get node -o wide
+  604  dig test1-floor-1.apps.ocp4.example.com
+  605  ssh root@192.168.50.254
+  606  oc get pod -n openshift-ingress -o wide
+  607  dig test1-floor-1.apps.ocp4.example.com
+  608  ssh root@utility
+  609  oc get pod -n openshift-ingress -o wide
+  610  oc get node -o wide
+  611  oc get pod -n openshift-ingress -o wide
+  612  oc project
+  613  oc get pod
+  614  oc get svc
+  615  oc delete routes.route.openshift.io test1 token
+  616  oc delete routes.route.openshift.io test1 
+  617  oc get route
+  618  curl http://test1-floor-1.apps.ocp4.example.com
+  619  oc project openshift-ingress
+  620  oc get pod
+  621  oc rsh router-default-649b9b8b5b-45p5n 
+  622  oc project floor-1 
+  623  oc delete route test1
+  624  oc get route
+  625  #oc expose deployment/test1 --name ericsson --type=NodePort
+  626  oc get svc
+  627  oc expose deployment/test1 --name ericsson --type=NodePort
+  628  oc get svc
+  629  oc get node -o wide
+  630  curl http://192.168.50.10:30346
+  631  curl http://192.168.50.11:30346
+  632  curl http://192.168.50.12:30346
+  633  oc delete svc ericsson 
+  634  oc get co
+  635  oc get network
+  636  oc get network/cluster -o yaml
+  637  oc get pod -n openshift-dns
+  638  oc get svc -n openshift-dns
+  639  oc project
+  640  oc get pod
+  641  oc rsh test1-679f989f49-4xsv8 
+  642  oc get pod -n openshift-dns
+  643  oc get svc -n openshift-dns
+  644  oc get pod -n openshift-dns -o wide
+  645  oc debug node/master01
+  646  oc get pod
+  647  oc get route
+  648  #oc create route edge --service=test1 --cert=mycert.crt --key=mykey.key
+  649  oc delete project floor-1
+  650  oc delete project floor-2
+  651  oc new-project test100
+  652  oc new-project test200
+  653  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0 -n test100
+  654  oc new-app --name test2 --docker-image=quay.io/anandpavithran/infosys:2.0 -n test200
+  655  git clone https://github.com/anandpavithran/openshift-network-policy
+  656  oc get pod -n test100
+  657  oc get pod -n test200
+  658  oc get pod -n test100 -o wide
+  659  oc get pod -n test200 -o wide
+  660  oc rsh test2-5857b8867c-hw5m8 
+  661  oc get pod -n test100 -o wide
+  662  oc get pod -n test200 -o wide
+  663  cd openshift-network-policy/
+  664  ls
+  665  vim b.yaml 
+  666  oc get networkpolicy -n test100
+  667  oc create -f b.yaml -n test100
+  668  oc get networkpolicy -n test100
+  669  oc rsh test2-5857b8867c-hw5m8 
+  670  oc label namespace test100 name=network-1
+  671  oc label namespace test200 name=network-2
+  672  ls
+  673  vim network1.yml 
+  674  vim network2.yml 
+  675  oc get pod
+  676  oc login -u admin -p redhat
+  677  oc rsh test2-5857b8867c-hw5m8 
+  678  oc expose svc test2 
+  679  oc get route
+  680  c
+  681  cd
+  682  oc  delete project test100
+  683  oc  delete project test200
+  684  oc new-project test100
+  685  oc new-app --name test1 --docker-image=quay.io/anandpavithran/infosys:2.0
+  686  oc get pod -o wide
+  687  oc scale --replicas=5 deployment/test1
+  688  oc get pod -o wide
+  689  oc get  node --show-label
+  690  oc get  node --show-labels
+  691  oc label node master03  env=prod
+  692  oc get  node --show-label
+  693  oc get  node --show-labels
+  694  oc label node master03  env-
+  695  oc get  node --show-labels
+  696  oc label node master03  env=prod
+  697  oc get pod -o wide
+  698  oc edit deployment test1
+  699  oc get pod -o wide
+  700  oc new-app --name test2 --docker-image=quay.io/anandpavithran/infosys:2.0
+  701  oc get pod -o wide
+  702  oc annotate namespace test100 openshift.io/node-selector="env=prod" --overwrite
+  703  oc edit project test100
+  704  oc get pod -o wide
+  705  oc delete pod test2-5857b8867c-8pvmj 
+  706  oc get pod -o wide
+  707  oc new-app --name test3 --docker-image=quay.io/anandpavithran/infosys:2.0
+  708  oc get pod -o wide
+  709  #MACHINESET - IPI INSTALLATION  -AUTOMAIC LABELING NODE
+  710  oc label node master02  env=dev
+  711  oc edit deployment test2
+  712  oc get pod -o wide
+  713  oc delete pod test2-5857b8867c-c5vd9 
+  714  oc get pod -o wide
+  715  history > share/12-05-2022.txt
