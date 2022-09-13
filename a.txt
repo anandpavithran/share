@@ -1,3 +1,0 @@
-JxbO93BoGLXsSMC8ouQr
-
-https://api.ocp4.example.com:6443/apis/build.openshift.io/v1/namespaces/test100/buildconfigs/test1/webhooks/JxbO93BoGLXsSMC8ouQr/github
