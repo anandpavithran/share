@@ -1,1 +1,3 @@
-https://api.ap46a.prod.ole.redhat.com:6443/apis/build.openshift.io/v1/namespaces/floor-15/buildconfigs/test5/webhooks/55JhEGdnDVgmzWReNsT_/github
+JxbO93BoGLXsSMC8ouQr
+
+https://api.ocp4.example.com:6443/apis/build.openshift.io/v1/namespaces/test100/buildconfigs/test1/webhooks/JxbO93BoGLXsSMC8ouQr/github
