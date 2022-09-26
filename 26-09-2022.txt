@@ -1,0 +1,176 @@
+    1  clear
+    2  exit
+    3  exit
+    4  ping www.google.com
+    5  vim token
+    6  cat token 
+    7  git config --global credential.helper cache
+    8  lab-configure 
+    9  git clone https://github.com/anandpavithran/DO180-apps
+   10  ls
+   11  cd DO180-apps/
+   12  ls
+   13  git status
+   14  touch a.txt
+   15  git status
+   16  git add .
+   17  git commit . -m "26092022"
+   18  git push --all
+   19  CD
+   20  cd
+   21  git config 
+   22  git config --get-all
+   23  git config -l
+   24  cat .gitconfig 
+   25  rpm -qa podman
+   26  podman images
+   27  podman pull quay.io/anandpavithran/ibm:1.0
+   28  podman login quay.io
+   29  podman pull quay.io/anandpavithran/ibm:1.0
+   30  podman images
+   31  podman rmi quay.io/anandpavithran/ibm:1.0
+   32  podman images
+   33  podman ps -a
+   34  podman images
+   35  podman run -d --name test1 -p 8051:8080 quay.io/anandpavithran/ibm:1.0
+   36  podman ps -a
+   37  podman exec -it --name test1 ls
+   38  podman exec -it test1 ls
+   39  podman exec -it test1 date
+   40  podman exec -it test1 bash
+   41  podman images
+   42  podman ps
+   43  podman stop test1
+   44  podman ps
+   45  podman ps -a
+   46  podman rm test1
+   47  podman ps -a
+   48  podman run -d --name test1 -p 8051:8080 -e IBM1=TEST1 -e HTTP_PROXY=192.168.0.1:5065 quay.io/anandpavithran/ibm:1.0
+   49  podman ps
+   50  podman exec -it test1 bash
+   51  podman info 
+   52  podman ps
+   53  podman ps -a
+   54  podman stop test1
+   55  podman ps
+   56  podman ps -a
+   57  podman images
+   58  podman rm test1
+   59  podman ps -a
+   60  podman images
+   61  podman rmi quay.io/anandpavithran/ibm:1.0
+   62  podman images
+   63  podman ps -a
+   64  podman run -it --name test1 ubi8 bash
+   65  podman start test1
+   66  podman ps
+   67  podman exec -it test1 bash
+   68  podman ps -a
+   69  podman search ubi8
+   70  podman images
+   71  podman ps -a
+   72  man signal
+   73  man 7 signal
+   74  podman kill -s 9 test1
+   75  podman ps -a
+   76  podman rm test1
+   77  ps -aux
+   78  ifconfig 
+   79  hostname
+   80  systemd-cgls
+   81  podman ps -a
+   82  podman run -it --name test1 ubi8
+   83  podman ps
+   84  podman ps -a
+   85  podman start test1
+   86  podman ps -a
+   87  podman exec -it test1 bash
+   88  podman rm test1 -f
+   89  podman ps -a
+   90  podman rm -a -f
+   91  podman rmi -a
+   92  podman ps -a
+   93  podman images
+   94  podman run -d --name test1 quay.io/anandpavithran/infosys:2.0
+   95  podman ps -a
+   96  podman rm -a 
+   97  podman rm -a  -f
+   98  podman run -d --name test1 -p 8051:8080 quay.io/anandpavithran/infosys:2.0
+   99  podman exec -it test1 bash
+  100  podman rm test1 -f
+  101  mkdir /home/student/share
+  102  podman run -d --name test1 -p 8051:8080 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+  103  podman exec -it test1 bash
+  104  ls -ld /home/student/share
+  105  podman unshare chown -R 1001:0 /home/student/share
+  106  ls -ld /home/student/share
+  107  podman exec -it test1 bash
+  108  ls -ldZ /home/student/share
+  109  sudo semanage fcontext -a -t container_file_t  '/home/student/share(/.*)?'
+  110  ls -ldZ /home/student/share
+  111  sudo restorecon -RvF /home/student/share
+  112  ls -ldZ /home/student/share
+  113  podman exec -it test1 bash
+  114  ls /home/student/share/
+  115  cat /home/student/share/index.html 
+  116  sudo -i
+  117  podman ps -a
+  118  podman rm test1 -a
+  119  podman rm test1 -f
+  120  podman ps -a
+  121  cat /home/student/share/index.html 
+  122  podman run -d --name test1 -p 8051:8080 -v /home/student/share:/var/www/html quay.io/anandpavithran/infosys:2.0
+  123  podman ps -a
+  124  podman inspect test1 | grep IPAddress
+  125  sudo podman network ls
+  126  sudo podman network inspect 2f259bab93aa
+  127  ifconfig 
+  128  sudo podman network inspect 2f259bab93aa
+  129  podman search infosys
+  130  sudo vim /etc/containers/registries.conf
+  131  podman search infosys
+  132  sudo vim /etc/containers/registries.conf.d/000-shortnames.conf 
+  133  podman search infosys
+  134  podman search infosys --limit 1
+  135  curl -Ls https://quay.io/v2/anandpavithran/infosys/tags/list
+  136  curl -Ls https://quay.io/v2/anandpavithran/infosys/tags/list | python -m json.tool
+  137* curl -u anandpavithran: -Ls https://quay.io/v2/anandpavithran/infosys/tags/list | python3 -m json.tool
+  138  podman images
+  139  podman tag quay.io/anandpavithran/infosys:2.0 infosys:2.0
+  140  podman tag quay.io/anandpavithran/infosys:2.0 infosys:10.0
+  141  podman images
+  142  podman run -it --name test1 ubi8 bash
+  143  podman run -it --name test2 ubi8 bash
+  144  podman ps -a
+  145  podman commit test2 ericsson:1.0
+  146  podman images
+  147  podman tag ericsson:1.0 quay.io/anandpavithran/ericsson:1.0
+  148  podman images
+  149  podman push quay.io/anandpavithran/ericsson  1.0         f0623f16dc20  About a minute ago  318 MB
+  150  podman push quay.io/anandpavithran/ericsson:1.0
+  151  podman images
+  152  podman save -o ericsson.tar quay.io/anandpavithran/ericsson:1.0
+  153  ls
+  154  podman rm -a -f
+  155  podman rmi -a -f
+  156  podman images
+  157  podman ps -a
+  158  ls
+  159  podman load -i ericsson.tar 
+  160  podman images
+  161  podman search --list-tags infosys
+  162  podman search --list-tags quay.io/anandpavithran/infosys
+  163  podman images infosys
+  164  history > 26-09-2022.txt
+    1  clear
+    2  exit
+    3  exit
+    4  ping www.google.com
+    5  cd
+    6  cat token 
+    7  podman ps
+    8  podman stop 84f4582cc4b6 
+    9  podman ps
+   10  podman ps -a
+   11  podman diff test2
+   12  history >> 26-09-2022.txt 
