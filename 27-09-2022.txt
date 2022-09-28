@@ -1,0 +1,194 @@
+    1  mkdir test1
+    2  cd test1/
+    3  vim Containerfile
+    4  ls
+    5  vim a.txt
+    6  ls
+    7  mv Containerfile containerfile
+    8  ls
+    9  podman build -t list-utils:1.0 --layers=false --format=docker .
+   10  ls
+   11  mv containerfile Containerfile
+   12  ls
+   13  podman ps -a
+   14  podman images
+   15  podman build -t list-utils:1.0 --layers=false --format=docker .
+   16  which ls
+   17  vim Containerfile
+   18  podman build -t list-utils:1.0 --layers=false --format=docker .
+   19  vim Containerfile
+   20  podman build -t list-utils:1.0 --layers=false --format=docker .
+   21  podman images
+   22  podman run --name test1 list-utils:1.0
+   23  podman rm test1
+   24  podman run -it --name test1 list-utils:1.0 bash
+   25  podman rm test1
+   26  podman run -it --name test1 list-utils:1.0 "/bin/bash"
+   27  cd 
+   28  cp -rvf test1 test2
+   29  cd test2/
+   30  vim Containerfile 
+   31  podman build -t list-utils:2.0 --layers=false --format=docker .
+   32  podman rm test1
+   33  podman run --name test1 list-utils:2.0 
+   34  podman rm test1
+   35  podman run -it --name test1 list-utils:2.0 bash
+   36  podman images
+   37  vim ../test1/Containerfile 
+   38  vim Containerfile 
+   39  podman rm test1
+   40  podman run -it --name test1 list-utils:1.0 date
+   41  podman rm test1
+   42  podman run  --name test1 list-utils:2.0 date
+   43  vim Containerfile 
+   44  CD
+   45  cd
+   46  oc version
+   47  cat /usr/local/etc/ocp4.config 
+   48  oc login https://api.ocp4.example.com:6443 -u developer -p redhat
+   49  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   50  oc whoami --show-console
+   51  oc login https://api.ocp4.example.com:6443 -u developer -p redhat
+   52  oc login https://api.ocp4.example.com:6443 -u developer -p devloper
+   53  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   54  oc projects
+   55  oc get all
+   56  oc new-project floor-2
+   57  oc projects
+   58  oc get all
+   59  oc new-app --name test2 --image=quay.io/anandpavithran/infosys:2.0
+   60  oc get all
+   61  oc rsh test2-57859c64bd-xrj75 
+   62  oc expose svc test2
+   63  oc get all
+   64  curl http://test2-floor-2.apps.ocp4.example.com
+   65  oc get pod
+   66  oc get pod -o wide
+   67  oc describe pod test2-57859c64bd-xrj75 
+   68  oc get svc
+   69  oc get route
+   70  oc get all
+   71  oc delete route test2 
+   72  oc get all
+   73  oc port-forward test2-57859c64bd-xrj75 8051:8080
+   74  oc get pod
+   75  oc logs test2-57859c64bd-xrj75 
+   76  oc new-app --name test22 php:7.3~https://github.com/anandpavithran/phpdemo
+   77  oc get pod
+   78  oc logs -f bc/test22
+   79  oc get pod
+   80  oc ge troute
+   81  oc get route
+   82  oc get svc
+   83  oc expose svc test22
+   84  oc get route
+   85  oc get deployment
+   86  oc edit deployment test22
+   87  oc ge tpod
+   88  oc get pod
+   89  oc scale --replicas=1 test22
+   90  oc scale --replicas=1 deployment/test22
+   91  oc get pod
+   92  kubectl get pod
+   93  kubectl get deployment
+   94  git clone https://github.com/anandpavithran/kubenetes-demo
+   95  git clone https://github.com/anandpavithran/kubeRnetes-demo
+   96  cd kubeRnetes-demo/
+   97  LS
+   98  ls
+   99  oc projects
+  100  oc new-project floor-3
+  101  ls
+  102  vim pod.yml 
+  103  oc get all
+  104  oc create -f pod.yml 
+  105  oc get all
+  106  oc get pod -w
+  107  oc get all
+  108  oc delete pod web
+  109  oc get all
+  110  ls
+  111  vim deployment.yml 
+  112  oc get all
+  113  oc create -f pod.yml 
+  114  oc delete pod web
+  115  oc get all
+  116  oc create -f deployment.yml 
+  117  oc get all
+  118  oc delete pod myweb-deployment-7847f4dfbf-6p4b7 
+  119  oc get all
+  120  oc delete pod myweb-deployment-7847f4dfbf-7wx5b 
+  121  oc get all
+  122  oc delete deployment myweb-deployment 
+  123  oc get all
+  124  oc create -f deployment.yml 
+  125  oc get all
+  126  oc delete -f deployment.yml 
+  127  oc get all
+  128  oc create -f deployment.yml 
+  129  oc get all
+  130  vim service.yml 
+  131  oc create service clusterip -h
+  132  oc create service clusterip myweb --tcp=8080:8080
+  133  oc get all
+  134  oc edit service myweb 
+  135  oc expose svc myweb 
+  136  oc get route
+  137  curl http://myweb-floor-3.apps.ocp4.example.com
+  138  cd
+  139  oc projects
+  140  oc new-project floor-4
+  141  oc get is -n openshift
+  142  oc get is -n openshift -o name
+  143  oc edit is php -n openshift
+  144  oc get all
+  145  oc ge tis
+  146  oc get is
+  147  oc import-image infosys --confirm --from quay.io/anandpavithran/infosys:2.0
+  148  oc get is
+  149  oc project
+  150  oc new-app --name test4 -i infosys
+  151  oc get pod
+  152  oc expose svc test4
+  153  oc get route
+  154  curl http://test4-floor-4.apps.ocp4.example.com
+  155  git clone https://github.com/anandpavithran/mytest2
+  156  cd mytest2/
+  157  ls
+  158  vim index.html 
+  159  podman build -t quay.io/anandpavithran/infosys:2.0 --layers=false --format=docker .
+  160  vim Dockerfile 
+  161  podman build -t quay.io/anandpavithran/infosys:2.0 --layers=false --format=docker .
+  162  podman images
+  163  podman push quay.io/anandpavithran/infosys:2.0
+  164  curl http://test4-floor-4.apps.ocp4.example.com
+  165  oc import-image infosys
+  166  oc get pod
+  167  curl http://test4-floor-4.apps.ocp4.example.com
+  168  oc delete all --all
+  169  oc get all
+  170  #oc new-app --name test4 php:7.3~https://github.com/anandpavithran/phpdemo
+  171* oc new-app --name test4  https://github.com/anandpavithran/phpdemo
+  172  oc projects
+  173  oc delete project floor-4
+  174  oc delete project floor-3
+  175  oc delete project floor-2
+  176  oc delete project floor-1
+  177  cd
+  178  oc new-project floor-1
+  179  oc new-app --name test1 --image quay.io/anandpavithran/infosys:2.0
+  180  oc get pod
+  181  oc rsh test1-5c5957d77b-7bnwf 
+  182  oc new-app --name test5 --image quay.io/anandpavithran/infosys:2.0
+  183  oc get pod
+  184  oc rsh test5-f8f7bf884-kmlph 
+  185  oc new-app --name test6 --image quay.io/anandpavithran/infosys:2.0
+  186  oc rsh test6-c84bb4968-w6427 
+  187  oc rsh test5-f8f7bf884-kmlph 
+  188  oc get pod
+  189  oc delete pod test5-f8f7bf884-kmlph 
+  190  oc rsh test5-f8f7bf884-m5p8f 
+  191  oc projects
+  192  oc delete project floor-1 
+  193  lab auth-provider start
+  194  history >>share/27-09-2022.txt
