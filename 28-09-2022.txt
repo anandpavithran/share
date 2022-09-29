@@ -1,0 +1,345 @@
+    1  clear
+    2  exit
+    3  exit
+    4  ping www.google.com
+    5  curl http://localhost:8051
+    6  ping www.google.com
+    7  history 
+    8  oc get secret -n openshift-config
+    9  ssh root@utility
+   10  cat /usr/local/etc/ocp4.config 
+   11  oc login https://api.ocp4.example.com:6443 -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU
+   12  oc projects
+   13  oc logout
+   14  oc get nodes
+   15  oc get node
+   16  oc get pod
+   17  oc get node --kubeconfig=auth/kubeconfig
+   18  oc get pod --kubeconfig=auth/kubeconfig
+   19  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   20  oc login https://api.ocp4.example.com:6443 -u admin -p redhat
+   21  mkdir ericsson1
+   22  cd ericsson1/
+   23  oc login https://api.ocp4.example.com:6443 -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU
+   24  ls
+   25  htpasswd -c -B -b htpasswd manager redhat
+   26  ls
+   27  cat htpasswd 
+   28  htpasswd  -b htpasswd developer developer
+   29  ls
+   30  cat htpasswd 
+   31  oc get secret -n openshift-config
+   32  oc create secret generic ericsson1-secret --from-file htpasswd=/home/student/ericsson1/htpasswd -n openshift-config
+   33  oc get secret -n openshift-config
+   34  oc get pod -n openshift-authentication
+   35  oc get pod -n openshift-authentication -o wide
+   36  oc get oauth
+   37  oc edit oauth cluster 
+   38  oc get pod -n openshift-authentication -o wide
+   39  oc get oauth
+   40  oc get pod -n openshift-authentication -o wide
+   41  oc get oauth cluster 
+   42  oc edit oauth cluster 
+   43  oc get pod -n openshift-authentication -o wide
+   44  oc get pod -n openshift-authentication 
+   45  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   46  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   47  oc login https://api.ocp4.example.com:6443 -u kubeadmin -p WdBz8-mLKk9-yVN75-UhaiU
+   48  oc adm policy add-cluster-role-to-user cluster-admin manager
+   49  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   50  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   51  cd
+   52  mkdir ericsson2
+   53  cd ericsson2/
+   54  ls
+   55  oc extract secret/ercisson1-secret  -n openshift-config --to . --confirm
+   56  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   57  oc extract secret/ercisson1-secret  -n openshift-config --to . --confirm
+   58  oc extract secret/ericsson1-secret  -n openshift-config --to . --confirm
+   59  ls
+   60  cat htpasswd 
+   61  htpasswd -b htpasswd test1 redhat
+   62  ls
+   63  cat htpasswd 
+   64  htpasswd -b htpasswd test2 redhat
+   65  cat htpasswd 
+   66  oc set data secret/ericsson1-secret  --from-file htpasswd=/home/student/ericsson2/htpasswd  -n openshift-config
+   67  oc get pod -n openshift-authentication
+   68  oc get pod -n openshift-authentication -w
+   69  cd
+   70  oc get co
+   71  oc get pod -n openshift-authentication-operator
+   72  oc get clusterrole
+   73  oc get user
+   74  oc get identity
+   75  oc get group
+   76  oc whoami -t
+   77  oc whoami
+   78  oc get roles
+   79  oc get clusterroles
+   80  oc whoami
+   81  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   82  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   83  oc get clusterrole | grep self
+   84  oc get clusterrolebinding -o wide  | grep -E 'NAME|self-provisioner'
+   85  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   86  oc get clusterrolebinding -o wide  | grep -E 'NAME|self-provisioner'
+   87  oc describe clusterrolebindings self-provisioners
+   88  oc adm policy remove-role-from-group self-provisioner system:authenticated:oauth
+   89  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+   90  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   91  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   92  oc new-project share100
+   93  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   94  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   95  oc policy add-role-to-user admin developer
+   96  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+   97  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+   98  oc policy add-role-to-user admin developer -n share100
+   99  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  100  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+  101  oc get clusterroles
+  102  oc project
+  103  oc get sa
+  104  oc whoami
+  105  oc delete project share100
+  106  oc adm policy add-cluster-role-to-group self-provisioner system:authenticated:oauth
+  107  oc whomai
+  108  oc whoami
+  109  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  110  oc new-project test100
+  111  oc new-app --name test1 --image=quay.io/anandpavithran/infosys:2.0
+  112  oc get pod
+  113  oc expose svc test1
+  114  oc get route
+  115  curl http://test1-test100.apps.ocp4.example.com
+  116  oc get pod
+  117  oc rsh test1-5c5957d77b-hwmtf 
+  118  curl http://test1-test100.apps.ocp4.example.com
+  119  oc delete pod test1-5c5957d77b-hwmtf 
+  120  oc get pod
+  121  curl http://test1-test100.apps.ocp4.example.com
+  122  oc get pv
+  123  oc get pvc
+  124  oc get sc
+  125  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+  126  oc get pv
+  127  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  128  oc get pvc
+  129  #oc set volumes deployment/test1 --add --name ericsson-volume1 --type pvc --claim-class nfs-storage --claim-mode rwo --claim-size 2Gi --mount-path /var/www/html --claim-name ericsson-pvc1
+  130  oc get pod
+  131  curl http://test1-test100.apps.ocp4.example.com
+  132  oc get pvc
+  133  oc set volumes deployment/test1 --add --name ericsson-volume1 --type pvc --claim-class nfs-storage --claim-mode rwo --claim-size 2Gi --mount-path /var/www/html --claim-name ericsson-pvc1
+  134  oc get pvc
+  135  oc get pod
+  136  oc rsh test1-5b9fbb6b88-t9dl5 
+  137  ssh root@utility
+  138  oc get pvc
+  139  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+  140  oc get pv
+  141  oc login https://api.ocp4.example.com:6443 -u developer -p developer
+  142  oc get pod
+  143  oc scale --replicas=2 deployment/test1
+  144  oc get pod
+  145  oc rsh test1-5b9fbb6b88-9s9jw 
+  146  oc login https://api.ocp4.example.com:6443 -u manager -p redhat
+  147  oc get nodes
+  148  oc adm top nodes
+  149  oc describe node master01
+  150  oc get clusterversion
+  151  oc describe clusterversion
+  152  oc get co
+  153  oc adm node-logs master01
+  154  oc adm node-logs -u kubelet master01
+  155  oc adm node-logs -u crio master01
+  156  oc debug node/master01
+  157  oc project test100
+  158  oc get pod
+  159  oc delete all --all
+  160  oc new-app --name test1 https://github.com/anandpavithran/mytest
+  161  oc get pod
+  162  oc logs -f bc/test1
+  163  oc delete all --all
+  164  oc new-app --name test1 quay.io/anandpavithran/infosys:no
+  165  oc get pod
+  166  oc get pod -w
+  167  oc status
+  168  oc logs test1-6c7cd45f8c-djb7b 
+  169  oc projects
+  170  oc status --suggest
+  171  oc get pod
+  172  oc logs test1-6c7cd45f8c-djb7b 
+  173  #EFK-DO380
+  174  oc get pod
+  175  oc get pod --loglevel 6
+  176  oc get pod --loglevel 7
+  177  oc get pod --loglevel 8
+  178  oc get pod --loglevel 9
+  179  oc get pod --loglevel 10
+  180  oc whoami
+  181  oc whoami -t
+  182  oc whoami
+  183  oc get sc
+  184  oc edit sc nfs-storage 
+  185  oc projects 
+  186  oc project nfs-client-provisioner - NFS Provisioner
+  187  oc project nfs-client-provisioner
+  188  oc get pod
+  189  oc get all
+  190  oc edit pod nfs-client-provisioner-7c88ffb4f5-287sv 
+  191  oc projects
+  192  oc project test100
+  193  oc get all
+  194  oc delete all --all
+  195  oc new-app --name test1 -e DAY1=WEDNESDAY --image=quay.io/anandpavithran/infosys:2.0
+  196  oc rsh test1-f6f46cc85-9vlkf 
+  197  oc new-project test200
+  198  oc new-app --name test2 -e DAY1=WEDNESDAY --image=quay.io/anandpavithran/infosys:2.0
+  199  oc delete all --all
+  200  oc new-app --name test2 -e DAY2=TUESDAY --image=quay.io/anandpavithran/infosys:2.0
+  201  oc rsh test2-7476775595-bgpvn 
+  202  oc project nfs-client-provisioner
+  203  oc edit pod nfs-client-provisioner-7c88ffb4f5-287sv 
+  204  oc get crd | grep nfs
+  205  oc get crd 
+  206  oc get csv
+  207  oc get csv -A
+  208  oc get SUB -a
+  209  oc get sub -A
+  210  oc edit project nfs-client-provisioner 
+  211  oc project
+  212  oc edit schedulers.config.openshift.io 
+  213  oc edit sc
+  214  oc api-resources | grep sig
+  215  oc api-resources | grep k8s
+  216  oc api-resources | grep k8s.sig
+  217  oc edit sc
+  218  oc api-resources | grep k8s-sig
+  219  oc api-resources | grep nfs
+  220  oc get cm -A | grep prov
+  221  oc edit cm nfs-client-provisioner 
+  222  oc proje
+  223  oc projects
+  224  oc ge tcm
+  225  oc get cm
+  226  oc edit cm
+  227  oc get secret
+  228  oc edit pod nfs-client-provisioner-7c88ffb4f5-287sv 
+  229  oc project test100
+  230  oc delete all --all
+  231  oc new-app --name test1 -e MYTEST1=k8s-sigs.io/apple --image=quay.io/anandpavithran/infosys:2.0
+  232  oc project test200
+  233  oc delete all --all
+  234  oc new-app --name test2  --image=quay.io/anandpavithran/infosys:2.0
+  235  oc rsh test2-f57d65b48-mw74w 
+  236  oc new-project test300
+  237  oc new-app --name test3  --image=quay.io/anandpavithran/infosys:2.0
+  238  oc expose svc test3
+  239  oc get secret
+  240  oc create secret generic ericsson-secret1 --from-literal=USERNAME1=test1 --from-literal=USERNAME2=test3
+  241  oc get secret
+  242  vim mysecret.txt
+  243  oc create secret generic ericsson-secret2 --from-file=/home/student/mysecret.txt 
+  244  oc get secret
+  245  oc describe secret ericsson-secret1
+  246  oc describe secret ericsson-secret2
+  247  oc edit secret ericsson-secret1
+  248  echo dGVzdDE= | base64 -d
+  249  oc get cm
+  250  oc get secret
+  251  oc get pod
+  252  oc project
+  253  oc get pod
+  254  oc get cm
+  255  oc create cm ericsson-configmap1 --from-literal=LISTEN=8080 --from-literal=IPADDR=192.168.0.1
+  256  oc get cm
+  257  vim index.html
+  258  oc create cm ericsson-configmap2 --from-file=/home/student/index.html 
+  259  oc get cm
+  260  oc describe cm ericsson-configmap2 
+  261  oc describe cm ericsson-configmap1
+  262  oc get pod
+  263  oc rsh test3-69c968978d-f9l8l 
+  264  oc set env deployment/test3 --from secret/ericsson-secret1
+  265  oc get pod
+  266  oc rsh test3-75899665dc-z5jzk 
+  267  oc set volume deployment/test3 --add --name ericsson-volume1 --type secret --mount-path /mysecret --secret-name ericsson-secret2
+  268  oc get pod
+  269  oc rsh test3-f5fb5795f-l5tdn 
+  270  oc set env deployment/test3 --from configmap/ericsson-configmap1
+  271  oc get pod
+  272  oc rsh test3-f9f5fd67c-4b6qz 
+  273  curl http://test1-test100.apps.ocp4.example.com
+  274  curl http://test3-test300.apps.ocp4.example.com
+  275  oc set volume deployment/test3 --add --name ericsson-volume2 --type configmap --mount-path /var/www/html --configmap-name ericsson-configmap2
+  276  oc get pod
+  277  curl http://test3-test300.apps.ocp4.example.com
+  278  oc edit cm ericsson-configmap2 
+  279  oc get pod
+  280  curl http://test3-test300.apps.ocp4.example.com
+  281  oc get pod
+  282  curl http://test3-test300.apps.ocp4.example.com
+  283  oc create -h
+  284  oc create secret -h
+  285  oc create secret generic -h
+  286  oc project test100
+  287  oc get env
+  288  history 
+  289  oc projects
+  290  oc project nfs-client-provisioner
+  291  oc get pod
+  292  oc ge tcm
+  293  oc get cm
+  294  oc get secret
+  295  oc get pod
+  296  oc edit pod nfs-client-provisioner-7c88ffb4f5-287sv 
+  297  oc rsh nfs-client-provisioner-7c88ffb4f5-287sv 
+  298  oc exec -it nfs-client-provisioner-7c88ffb4f5-287sv 
+  299  oc exec -it nfs-client-provisioner-7c88ffb4f5-287sv  bash
+  300  oc exec -it nfs-client-provisioner-7c88ffb4f5-287sv  ls
+  301  oc exec  nfs-client-provisioner-7c88ffb4f5-287sv  date
+  302  oc exec  nfs-client-provisioner-7c88ffb4f5-287sv  ls /tmp
+  303  oc edit schedulers.config.openshift.io 
+  304  oc edit sc
+  305  oc project
+  306  oc describe project nfs-client-provisioner 
+  307  cat .kube/config 
+  308  OC PROJECTS
+  309  oc projects 
+  310  oc delete project test100
+  311  oc delete project test200
+  312  oc delete project test300
+  313  oc get node
+  314  master01,master02,master03 , worker01[infra],worker02[infra],worker03,worker04,worker
+  315  oc whoami
+  316  oc projects
+  317  oc new-project test100
+  318  oc new-app --name test1 --image=quay.io/anandpavithran/infosys:2.0
+  319  oc get all
+  320  oc get pod -o wide
+  321  oc scale --replicas=2 deployment/test1
+  322  oc get pod -o wide
+  323  oc get all
+  324  oc get pod -o wide
+  325  oc expose svc test1
+  326  oc get route
+  327  curl http://test1-test100.apps.ocp4.example.com
+  328  dig test1-test100.apps.ocp4.example.com
+  329  dig abcd.apps.ocp4.example.com
+  330  dig def.apps.ocp4.example.com
+  331  dig *.apps.ocp4.example.com
+  332  ssh root@192.168.50.254
+  333  oc get co
+  334  oc projects | grep ingress
+  335  oc get pod -n openshift-ingress
+  336  oc get pod -n openshift-ingress -o wide
+  337  oc get node -o wide
+  338  oc project
+  339  oc get svc
+  340  oc get pod
+  341  oc edit route test1 
+  342  oc edit svc test1 
+  343  ls
+  344  ls share/
+  345  history >> share/28-09-2022.txt

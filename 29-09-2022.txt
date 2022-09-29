@@ -1,0 +1,234 @@
+    1  history 
+    2  oc project
+    3  oc get pod -o wide -n test100
+    4  oc delete all --all
+    5  oc get all
+    6  oc delete all --all -n test100
+    7  oc new-app --name test1 --image=quay.io/anandpavithran/infosys:2.0 -n test100
+    8  oc get pod -n test100
+    9  oc get pod -n test100 -o wide
+   10  oc expose svc test1 -n test100
+   11  oc scale --replicas=2 deployment/test1 -n test100
+   12  oc get pod -n test100 -o wide
+   13  oc projects
+   14  oc get pod -n openshift-etcd
+   15  oc get pod -n openshift-apiservers
+   16  oc get pod -n openshift-apiserver
+   17  oc project
+   18  oc project test100
+   19  oc get network
+   20  oc get network/cluster -o yaml
+   21  oc get co | grep network
+   22  oc projects | grep dns
+   23  oc get co | grep dns
+   24  oc get pod -n openshift-dns-operator
+   25  oc get dns
+   26  oc edit dns cluster 
+   27  oc describe dns.operator
+   28* oc get dns.operator/
+   29  oc describe dns.operator/default
+   30  oc projects | grep dns
+   31  oc get pod -n openshift-dns
+   32  oc get pod -n openshift-dns -o wide
+   33  oc get svc -n openshift-dns -o wide
+   34  ocge tpod -n test100
+   35  oc get pod -n test100
+   36  oc new-project test200
+   37  oc new-app --name test2 --image=quay.io/anandpavithran/infosys:2.0 -n test100
+   38  oc get pod
+   39  oc delete all -l app=test2 -n test100
+   40  oc new-app --name test2 --image=quay.io/anandpavithran/infosys:2.0 -n test200
+   41  oc get pod
+   42  oc get pod -o wide -n test100
+   43  oc get pod -o wide -n test200
+   44  oc project
+   45  oc rsh test2-f57d65b48-2xxmw 
+   46  oc delete all -l app=test2
+   47  oc new-app --name test2 --image=quay.io/anandpavithran/infosys:3.0 -n test200
+   48  oc get pod -o wide -n test200
+   49  oc get pod -o wide -n test100
+   50  oc get pod -o wide -n test200
+   51  oc rsh test2-847bbb94-ptk8f 
+   52  oc get svc -o wide -n test100
+   53  oc rsh test2-847bbb94-ptk8f 
+   54  oc get svc -n openshift-dns
+   55  oc debug node/master01
+   56  cd mytest2/
+   57  ls
+   58  cd
+   59  rm -rvf mytest2/
+   60  git clone https://github.com/anandpavithran/mytest2
+   61  cd mytest2/
+   62  vim index.html 
+   63  #podman build -t quay.io/anandpavithran/infosys:2.0 --format docker --layers=false .
+   64  vim Dockerfile 
+   65  podman build -t quay.io/anandpavithran/infosys:2.0 --format docker --layers=false .
+   66  podman push quay.io/anandpavithran/infosys:2.0
+   67  podman login quay.io
+   68  podman push quay.io/anandpavithran/infosys:2.0
+   69  cd
+   70  git clone https://github.com/anandpavithran/openshift-network-policy
+   71  oc projects
+   72  oc delete project test200
+   73  oc project test100
+   74  oc get pod
+   75  oc project openshift-ingress
+   76  oc rsh router-default-699bc7764c-
+   77  oc rsh router-default-699bc7764c-jsgzs 
+   78  oc get pod -o wide -n test100
+   79  oc scale replicas=0  deployment/test1 -n test100
+   80  oc scale --replicas=0  deployment/test1 -n test100
+   81  oc rsh router-default-699bc7764c-jsgzs 
+   82  oc scale --replicas=1  deployment/test1 -n test100
+   83  oc rsh router-default-699bc7764c-jsgzs 
+   84  oc project test100
+   85  oc delete all --all
+   86  oc new-app --name test1 --image=quay.io/anandpavithran/infosys:2.0 -n test200
+   87  oc new-app --name test1 --image=quay.io/anandpavithran/infosys:2.0 -n test100
+   88  oc get pod
+   89* oc expose svc test1
+   90  oc get route
+   91  curl http://test1-test100.apps.ocp4.example.com
+   92  oc rsh test1-584b9c65b6-rds77 
+   93  cd kubeRnetes-demo/
+   94  LS
+   95  ls
+   96  oc new-project test200
+   97  vim deployment.yml 
+   98  oc create -f deployment.yml 
+   99  oc get all
+  100  oc create service 
+  101  oc create service clusterip -h
+  102  oc create service clusterip myweb --tcp=8080:8080
+  103  oc ge tsvc
+  104  oc get all
+  105  vim deployment.yml 
+  106  oc edit svc myweb 
+  107  vim ingress.yml 
+  108  oc create -f ingress
+  109  oc create -f ingress.yml 
+  110  vim ingress.yml 
+  111  oc explain ingress
+  112  vim ingress.yml 
+  113  oc create -f ingress.yml 
+  114  vim ingress.yml 
+  115* oc create ingress 
+  116  vim ingress.yml 
+  117  oc create ingress myweb --rule="/=myweb:8080
+  118  oc create ingress myweb --rule="/=myweb:8080"
+  119  oc get ingress
+  120  oc cerate ingress -h
+  121  oc create ingress -h
+  122  oc delete ingress myweb 
+  123  oc create ingress myweb --class=default --rule="test1-test100.apps.ocp4.example.com=myweb:8080"
+  124  oc create ingress myweb --class=default --rule="test1-test100.apps.ocp4.example.com,myweb:8080"
+  125  oc create ingress myweb --class=default --rule="test1-test100.apps.ocp4.example.com/=myweb:8080"
+  126  oc get ingress
+  127  curl http://test1-test100.apps.ocp4.example.com
+  128  oc edit ingress myweb 
+  129  oc get route
+  130  oc get ingress myweb -o yaml
+  131  oc get ingress myweb -o yaml > ingress.yml 
+  132  vim ingress.yml 
+  133  oc delete ingress myweb 
+  134  oc get ingress
+  135  oc create -f ingress.yml 
+  136  oc get ingress
+  137  oc delete ingress myweb 
+  138  oc get all
+  139  oc expose svc myweb
+  140  oc get route
+  141  oc get ingress
+  142  curl http://myweb-test200.apps.ocp4.example.com
+  143  oc get all
+  144  oc delete route myweb
+  145  oc get all
+  146  oc expose deployment/myweb-deployment --type=NodePort --namae=myweb
+  147  oc expose deployment/myweb-deployment --type=NodePort --name=myweb
+  148  oc expose deployment/myweb-deployment --type=NodePort --name=myweb1
+  149  oc get all
+  150  oc get node -o wide
+  151  curl http://192.168.50.10:32017
+  152  curl http://192.168.50.11:32017
+  153  curl http://192.168.50.12:32017
+  154  vim ingress.yml 
+  155  oc get all
+  156  oc delete service myweb1
+  157  oc ge tall
+  158  oc get all
+  159  curl https://test1-test100.apps.ocp4.example.com
+  160  oc get all
+  161  oc create route edge --service=myweb
+  162  oc get all
+  163  curl http://myweb-test200.apps.ocp4.example.com
+  164  curl -v https://myweb-test200.apps.ocp4.example.com
+  165  cd
+  166  oc projects
+  167  oc delete project test100
+  168  oc delete project test200
+  169  oc new-project test100
+  170  oc new-project test200
+  171  oc new-app --name test1 --image=quay.io/anandpavithran/infosys:2.0 -n test100
+  172  oc new-app --name test2 --image=quay.io/anandpavithran/infosys:2.0 -n test200
+  173  oc get pod -o -wide -n test100
+  174  oc get pod -o wide -n test100
+  175  oc get pod -o wide -n test200
+  176  oc rsh test2-67677f4794-zfjcl 
+  177  cd openshift-network-policy/
+  178  vim b.yaml 
+  179  oc get networkpolicy -n test100
+  180  oc create -f b.yaml -n test100
+  181  oc get networkpolicy -n test100
+  182  oc rsh test2-67677f4794-zfjcl 
+  183  oc project test100
+  184  oc get networkpolicy
+  185  oc edit networkpolicy ericsson-deny-all 
+  186  ls
+  187  vim network1.yml 
+  188  vim network2.yml 
+  189  vim network3.yml 
+  190  cd
+  191  oc projects
+  192  oc login -u manager -p redhat
+  193  oc projects
+  194  oc new-project test300
+  195  oc new-app --name test3 --image=quay.io/anandpavithran/infosys:no
+  196  oc get pod
+  197  oc status
+  198  oc logs test3-574848fc95-dllrg 
+  199  oc status --suggest
+  200  oc get scc
+  201  oc get scc | awk '{print $1}'
+  202  oc project
+  203  oc get sa
+  204  oc get pod
+  205  oc describe pod test3-574848fc95-dllrg | grep scc
+  206  oc adm policy add-scc-to-user anyuid -n test300 -z default
+  207  oc delete all --all
+  208  oc new-app --name test3 --image=quay.io/anandpavithran/infosys:no
+  209  oc get pod
+  210  oc describe pod test3-574848fc95-wnm6h | grep scc
+  211  oc rsh test3-574848fc95-wnm6h 
+  212  oc get pod -n test100
+  213  oc project test100
+  214  oc rsh test1-584b9c65b6-xd57h 
+  215  oc project test300
+  216  oc get sa
+  217  oc create sa anand
+  218  oc adm policy remove-scc-from-user anyuid -n test300 -z default
+  219  oc get sa
+  220  oc new-app --name test3 --image=quay.io/anandpavithran/infosys:no
+  221  oc scale --replicas=0 deployment/test3
+  222  oc get pod
+  223  oc get all
+  224  oc get sa
+  225  oc set serviceaccount deployment/test3 anand
+  226  oc get all
+  227  oc edit deployment/test3
+  228  oc scale --replicas=1 deployment/test3
+  229  oc get pod
+  230  oc status --suggest
+  231  oc edit scc restricted 
+  232  oc edit scc anyuid
+  233  history 
+  234  history  >> share/29-09-2022.txt
